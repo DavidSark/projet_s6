@@ -7,7 +7,6 @@
         <nuxt-link to="/intro">
             <button>Commencer</button>
         </nuxt-link>
-       
     </div>
 </template>
 

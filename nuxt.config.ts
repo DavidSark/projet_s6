@@ -5,5 +5,17 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
 
-  css: ['@/assets/scss/main.scss'] 
+  css: ['@/assets/scss/main.scss'],
+
+  vite:{
+    css:{
+      preprocessorOptions:{
+        scss:{
+          additionalData:
+            `@import "@/assets/scss/foundations/variables.scss";`
+        }
+      }
+    }
+  }
+  
 })
