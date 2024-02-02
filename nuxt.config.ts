@@ -7,6 +7,15 @@ export default defineNuxtConfig({
 
   css: ['@/assets/scss/main.scss'],
 
+
+  runtimeConfig: {
+    public: {
+      apiUrl: "",
+    },
+  },
+
+
+
   vite:{
     css:{
       preprocessorOptions:{
