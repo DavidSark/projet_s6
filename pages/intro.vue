@@ -26,7 +26,5 @@ onBeforeMount(async()=>{
 </template>
 
 <style lang="scss" scoped>
-li{
-   
-}
+
 </style>

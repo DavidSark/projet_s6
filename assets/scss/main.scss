@@ -1,3 +1,7 @@
 @import '@/assets/scss/foundations/reset.scss';
 @import '@/assets/scss/foundations/variables.scss';
 @import '@/assets/scss/foundations/functions.scss';
+
+body{
+  background: $black;
+}
