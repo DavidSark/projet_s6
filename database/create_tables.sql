@@ -25,6 +25,8 @@ CREATE TABLE Scenario(
     reponse1 TEXT,
     reponse2 TEXT,
     image TEXT,
+    scenarioSuivant1 INTEGER,
+    scenarioSuivant2 INTEGER,
     planeteID INTEGER,
     FOREIGN KEY (planeteID) REFERENCES Planete(planeteID)
 );

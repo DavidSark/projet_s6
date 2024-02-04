@@ -23,10 +23,10 @@ app.get('/', (req, res) => {
   });
 
 
-//Route de vérification d'appel
-app.get('/test',(req,res) =>{
+//Route d'appel des planètes
+app.get('/planete',(req,res) =>{
 
-    db.all('SELECT * FROM Test',(err, rows)=>{
+    db.all('SELECT * FROM Planete',(err, rows)=>{
         if(err){
             console.log('Il y a eu une erreur:', err.message);
             res.status(500).json({error: 'Internal server error'});
@@ -37,20 +37,34 @@ app.get('/test',(req,res) =>{
     });
 });
 
+//Route d'appel de l'interface
+app.get('/interface',(req,res) =>{
 
-
-//Route de vérification d'appel
-app.get('/stone', (req,res)=>{
-    db.all('SELECT * FROM Stone', (err, rows)=>{
+    db.all('SELECT * FROM Interface',(err, rows)=>{
         if(err){
             console.log('Il y a eu une erreur:', err.message);
             res.status(500).json({error: 'Internal server error'});
             return;
         }
         res.json(rows);
-        
-    })
-})
+        // console.log(rows)
+    });
+});
+
+//Router d'appel des scénarios
+app.get('/scenario',(req,res) =>{
+
+    db.all('SELECT * FROM Scenario',(err, rows)=>{
+        if(err){
+            console.log('Il y a eu une erreur:', err.message);
+            res.status(500).json({error: 'Internal server error'});
+            return;
+        }
+        res.json(rows);
+        // console.log(rows)
+    });
+});
+
 
 //----------------------------------------------------------------------------------------//
 
