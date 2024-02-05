@@ -8,7 +8,7 @@
             <h1>Journey</h1>
         </div>
         <div class="line"></div>
-        <MyButton spacing="spaced" href="/intro" >Launch</MyButton>
+        <MyButton spacing="spaced" href="/instructions" >Launch</MyButton>
     </div>
 </template>
 

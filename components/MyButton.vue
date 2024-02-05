@@ -27,6 +27,7 @@ const className = computed (()=>({
   border: 1px solid $white;
   padding: rem(15) rem(25);
   color: $white;
+  font-family: $font-poppins;
   font-size: rem(12);
   text-transform: uppercase;
   cursor: pointer;
