@@ -25,8 +25,8 @@ const handleResponse = (nextScenarioID) => {
     if (nextScenarioID !== null) {
         currentScenarioID.value = nextScenarioID;
     }
-    // Vous pouvez ajouter une logique supplémentaire ici, par exemple pour gérer les scénarios sans suite
-};
+    // si scénario fini faire : 
+}
 </script>
 
 <template>
