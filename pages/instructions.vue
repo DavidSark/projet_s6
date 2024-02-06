@@ -1,3 +1,13 @@
+<script setup>
+
+const isAbout = ref(false)
+
+const toggleAbout = () => {
+  isAbout.value = !isAbout.value;
+};
+
+</script>
+
 <template>
   <div class="container">
     <div class="container_left">
@@ -5,11 +15,34 @@
     </div>
 
     <div class="container_right">
-      <div class="container_right-content">
-        <RouterLink to="/">
-          <p class="about">About</p>
-        </RouterLink>
+
+
+      <div class="container_right-content" v-if="isAbout === false">
+      
+          <p class="about" @click="toggleAbout()">About</p>
+       
         <h2>Instructions</h2>
+        <p class="container_right-content-p">
+          Tiramisu chocolate chocolate bar jelly cake tiramisu. Liquorice croissant chocolate bonbon danish gummi bears
+          tiramisu marshmallow candy canes. Dessert sesame snaps chocolate carrot cake apple pie caramels gingerbread.
+          Wafer dragée bear claw tiramisu donut cookie candy soufflé. Bonbon tiramisu chocolate oat cake apple pie
+          brownie. Dragée fruitcake sugar plum cake gummi bears tart jelly-o jelly-o cupcake. Gummies sweet fruitcake
+          sweet roll soufflé.
+          <br/>
+          <br/>
+          Icing pastry icing halvah biscuit danish cheesecake oat cake macaroon. Candy canes candy chocolate cake jelly
+          apple pie liquorice. Cupcake lollipop candy bonbon oat cake lemon drops. Bear claw donut jujubes croissant
+          icing. Jelly beans donut pie jelly-o donut cake. Gingerbread gummi bears jujubes tart caramels. Jelly-o cake
+          gingerbread dragée liquorice cupcake jelly chocolate cake. Wafer marshmallow cotton candy cookie carrot cake
+          jelly-o soufflé. Shortbread jelly-o oat cake liquorice bonbon lollipop ice cream bonbon fruitcake.</p>
+        <MyButton class="button_start" href="/">start mission</MyButton>
+      </div>
+
+
+      <div class="container_right-content" v-else>
+
+        <p class="about" @click="toggleAbout()">About</p>
+        <h2>About</h2>
         <p class="container_right-content-p">
           Tiramisu chocolate chocolate bar jelly cake tiramisu. Liquorice croissant chocolate bonbon danish gummi bears
           tiramisu marshmallow candy canes. Dessert sesame snaps chocolate carrot cake apple pie caramels gingerbread.
@@ -52,33 +85,7 @@
       justify-content: center;
       margin: 0 rem(50);
 
-      a{
-        display: inline-flex;
-        justify-content: flex-end; 
-        text-decoration: none;
-        color: $white;
-       
-        cursor: pointer;
-     
-
-        ::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background-color: $white;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .4s ease-in;
-        }
-
-        :hover::after {
-            transform: scaleX(1);
-        }
-      }
-      
+    
       .about{
         padding-bottom: rem(5);
         border-bottom: 1px solid transparent;
@@ -88,7 +95,31 @@
         font-size: rem(10);
         text-transform: uppercase;
         position: relative; 
+        display: flex;
+        justify-content: flex-end;
+        cursor: pointer;
+       
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 1px;
+          background-color: $white; // Remplacez $white par la couleur souhaitée
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform .4s ease-in;
+          }
+
+          &:hover::after {
+            transform: scaleX(1);
+          }
+
+
+          
         }
+
 
       h2 {
         text-transform: uppercase;
