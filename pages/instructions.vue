@@ -35,7 +35,7 @@ const toggleAbout = () => {
           gingerbread dragée liquorice cupcake jelly chocolate cake. Wafer marshmallow cotton candy cookie carrot cake
           jelly-o soufflé. Shortbread jelly-o oat cake liquorice bonbon lollipop ice cream bonbon fruitcake.
         </p>
-        <MyButton class="button_start" href="/">start mission</MyButton>
+        <MyButton class="button_start" href="/intro">start mission</MyButton>
       </div>
 
 
@@ -59,7 +59,7 @@ const toggleAbout = () => {
           gingerbread dragée liquorice cupcake jelly chocolate cake. Wafer marshmallow cotton candy cookie carrot cake
           jelly-o soufflé. Shortbread jelly-o oat cake liquorice bonbon lollipop ice cream bonbon fruitcake.
         </p>
-        <MyButton class="button_start" href="/">start mission</MyButton>
+        <MyButton class="button_start" href="/intro">start mission</MyButton>
       </div>
     </div>
   </div>
