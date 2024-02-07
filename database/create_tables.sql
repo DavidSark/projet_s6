@@ -6,7 +6,8 @@ CREATE TABLE Planete (
     atmosphere TEXT,
     population TEXT,
     atterissage TEXT,
-    visite TEXT
+    visite TEXT,
+    image TEXT
 );
 
 --Table Interface

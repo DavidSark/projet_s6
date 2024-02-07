@@ -33,7 +33,7 @@ onBeforeMount(async () => {
                 <MyCard @update:currentIndex="updateCurrentIndex" class="middle_card"></MyCard>
             </div>
             <div class="container-right">
-                <img src="/img/hearth.png" alt="">
+                <img v-if="planeteData.length > 0" :src="planeteData[currentIndex].image" alt="Image de la planète">
             </div>
         </div>
         <div class="bottom" v-if="planeteData.length > 0">

@@ -1,6 +1,8 @@
 <script setup>
 import {client} from '@/utils/axios'
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const planeteData = ref([])
 const currentIndex = ref(0);
 
@@ -30,6 +32,15 @@ const goToPreviousPlanet = () => {
     }
 };
 
+const currentPlanetUrl = computed(() => {
+    const planetName = planeteData.value[currentIndex.value]?.nom.toLowerCase();
+    return planetName === 'terre' ? '/hearth' : planetName === 'mars' ? '/mars' : '';
+});
+
+const navigate = () => {
+    router.push(currentPlanetUrl.value);
+};
+
 </script>
 
 <template>
@@ -42,7 +53,7 @@ const goToPreviousPlanet = () => {
       </div>
       <div class="container_content-desc">
         <p v-if="planeteData.length">{{ planeteData[currentIndex].description }}</p>
-        <MyButton href="/history" class="btn">Land</MyButton>
+        <button @click="navigate" class="btn">Land</button>
       </div>
     </div>
   </div>  
@@ -100,8 +111,6 @@ const goToPreviousPlanet = () => {
     }
 
     &-desc{
-        display: flex;
-        flex-direction: column;
         width: 90%;
         // width: rem(350);
         margin: rem(30) auto;
@@ -111,7 +120,17 @@ const goToPreviousPlanet = () => {
           line-height: rem(30);
         }
         .btn{
-          margin-top: rem(20)
+          margin-top: rem(20);
+          display: inline-block;
+          text-decoration: none;
+          background: transparent;
+          border: 1px solid $white;
+          padding: rem(15) rem(25);
+          color: $white;
+          font-family: $font-poppins;
+          font-size: rem(12);
+          text-transform: uppercase;
+          cursor: pointer;
         }
     }
   
