@@ -1,5 +1,5 @@
 --Insertion planete
-INSERT INTO Planete (nom, description, atmosphere, population,atterissage, visite) VALUES ('Terre', 'La Terre est une planète bleu qui en fait a des caractéristiques bien à elle et elle est aussi bleu parce que elle est est blue en fait.', 'Épaisse - Gazeuse', 'Inconu', 'Possible', 'Déjà visité');
+INSERT INTO Planete (nom, description, atmosphere, population,atterissage, visite) VALUES ('Terre', 'La Terre est une planète bleu qui en fait a des caractéristiques bien à elle et elle est aussi bleu parce que elle est est blue en fait. La Terre est une planète bleu qui en fait a des caractéristiques bien à elle et elle est aussi bleu parce que elle est est blue en fait. La Terre est une planète bleu qui en fait a des caractéristiques bien à elle et elle est aussi bleu parce que elle est est blue en fait. La Terre est une planète bleu qui en fait a des caractéristiques bien à elle et elle est aussi bleu parce que elle est est blue en fait. ', 'Épaisse - Gazeuse', 'Inconu', 'Possible', 'Déjà visité');
 INSERT INTO Planete (nom, description, atmosphere, population,atterissage, visite) VALUES ('Mars', 'Mars est une planète rouge qui en fait a des caractéristiques bien à elle et elle est aussi rouge parce que elle est est rouge en fait.', 'Fine - Gazeuse', 'Connu', 'Impossible', 'Non visité');
 
 --Insertion Interface

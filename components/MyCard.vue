@@ -58,13 +58,15 @@ const goToPreviousPlanet = () => {
   border: 1px solid;
   border-image: linear-gradient(to bottom, $white, transparent) 1;
   color: $white;  
-  width: rem(425);
-  height: 60vh;
+  width: 100%;
+  // width: rem(425);
+  // height: 60vh;
   &_content{
     display: flex;
     flex-direction: column;
 
     &-title{
+      margin-top: rem(40);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -88,7 +90,8 @@ const goToPreviousPlanet = () => {
     }
     h2{
       font-weight: 100;
-      font-size: rem(64);
+      font-size: rem(32);
+      //font-size: rem(64);
       text-transform: uppercase;
       letter-spacing: rem(20);
       display: flex;
@@ -99,8 +102,10 @@ const goToPreviousPlanet = () => {
     &-desc{
         display: flex;
         flex-direction: column;
-        width: rem(350);
+        width: 90%;
+        // width: rem(350);
         margin: rem(30) auto;
+        font-size: rem(10);
         p{
           font-weight: 200;
           line-height: rem(30);
@@ -110,6 +115,42 @@ const goToPreviousPlanet = () => {
         }
     }
   
+  }
+}
+
+@media screen and (min-width:768px) {
+.container{
+  overflow: hidden;
+  width: rem(425);
+  margin: 0 auto;
+}
+  .container_content-desc{
+    width: rem(350);
+    font-size: rem(16);
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .container{
+ 
+  width: rem(425);
+  margin: 0 auto;
+  &_content{
+    &-title{
+      h2{
+         font-size: rem(64);
+      }
+    }
+  }
+}
+.container_content-desc{
+    padding: rem(0) rem(30) ;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container_content-desc{
+    width: rem(425);
   }
 }
 </style>

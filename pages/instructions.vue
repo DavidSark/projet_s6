@@ -79,7 +79,7 @@ const toggleAbout = () => {
   &_right {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
     flex: 1;
     border: 1px solid;
     border-image: linear-gradient(to bottom, $white, transparent) 1;
@@ -90,7 +90,7 @@ const toggleAbout = () => {
         text-transform: uppercase;
         font-weight: 100;
         font-size: 6.3vw;
-        margin: rem(50) rem(0) rem(25);
+        margin: rem(40) rem(0) rem(25);
         display: flex;
         justify-content: center;
       }
@@ -113,7 +113,7 @@ const toggleAbout = () => {
 
   &_about{
     display: flex;
-    justify-content: flex-end;
+    padding: rem(20) rem(0) rem(0) ;
     .about {
         padding-bottom: rem(5);
         border-bottom: 1px solid transparent;
@@ -171,7 +171,7 @@ const toggleAbout = () => {
   .container {
     display: flex;
     flex-direction: row;
-
+   
     &_left {
       display: block;
       background-image: url("/img/fond.jpg");
@@ -191,6 +191,7 @@ const toggleAbout = () => {
     }
 
     &_right {
+      justify-content: center;
       &-content {
         &-p {
           font-size: rem(12);
