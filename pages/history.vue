@@ -32,12 +32,12 @@ const handleResponse = (nextScenarioID) => {
 <template>
     <div class="container">
         <h2>Page history</h2>
-
         <div v-for="item in scenarioData" :key="item.scenarioID" >
             <div  v-if="item.scenarioID === currentScenarioID">
                 <p>{{ item.description }}</p>
                 <button v-if="item.reponse1" @click="handleResponse(item.scenarioSuivant1)">{{ item.reponse1 }}</button>
                 <button v-if="item.reponse2" @click="handleResponse(item.scenarioSuivant2)">{{ item.reponse2 }}</button>
+                <img :src="item.image" alt="">
             </div>
         </div>
        

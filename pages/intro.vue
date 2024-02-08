@@ -148,16 +148,13 @@ onBeforeMount(async () => {
             display: flex;
             flex-direction: row;
             gap: rem(20);
-
             &-stars {
             width: 55%;
-
         }
             &-left {
                 position: initial;
                 color: $white;
                 padding: rem(40) rem(0) rem(0) rem(40);
-
                 a {
                     color: white;
                     text-decoration: none;
