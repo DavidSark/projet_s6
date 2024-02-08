@@ -13,6 +13,13 @@ INSERT INTO Scenario (description, reponse1, reponse2, image, scenarioSuivant1, 
 
 
 
+INSERT INTO Scenario (description, reponse1, reponse2, image, scenarioSuivant1, scenarioSuivant2, planeteID) VALUES ("c'est la planète Mars", 'Vous décidez de vous battre!', 'Vous décidez de vous enfuir et de retourner au vaisseau!', '/img/image1.jpg',2,3,2);
+
+
+
+
+
+
 
 
 

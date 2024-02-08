@@ -4,6 +4,10 @@ import { client } from '@/utils/axios';
 const bddData = ref([]);
 const scenarioData = ref([])
 const currentScenarioID = ref(1);
+const oxygenLevel = ref(100); // Pourcentage d'oxygène initial
+const timerDuration = 5; // 5 minutes en secondes
+const countdown = ref(timerDuration);
+
 
 onBeforeMount(async () => {
   try {
@@ -31,13 +35,35 @@ const handleResponse = (nextScenarioID) => {
 const activeScenario = computed(() => {
   return scenarioData.value.find(item => item.scenarioID === currentScenarioID.value);
 });
+
+
+const startCountdown = () => {
+  const interval = setInterval(() => {
+    countdown.value--;
+    oxygenLevel.value = (countdown.value / timerDuration) * 100;
+
+    if (countdown.value <= 0 || oxygenLevel.value <= 0) {
+      clearInterval(interval);
+      const deadInterface = document.getElementsByClassName('dead')[0];
+      deadInterface.style.display = 'flex'
+    }
+  }, 1000); // Mise à jour chaque seconde
+
+  onUnmounted(() => {
+    clearInterval(interval);
+  });
+};
+
+onMounted(() => {
+  startCountdown(); // Lance le décompte dès que le composant est monté
+});
 </script>
 
 
 
 <template>
   <div class="container">
-   
+
     <div class="container-left">
       <RouterLink to="/intro">
         <p class="return">Back to ship</p>
@@ -57,13 +83,14 @@ const activeScenario = computed(() => {
             <div class="status">
               <p>Status</p>
               <div class="o2">
-                <p>O₂ :</p>
-                <p>100%</p>
+                <p>O₂ : {{ oxygenLevel.toFixed(0) }}%</p>
               </div>
             </div>
           </div>
 
-       
+
+
+
         </div>
       </div>
     </div>
@@ -71,7 +98,15 @@ const activeScenario = computed(() => {
       <div class="container-right-content" v-if="activeScenario">
         <img :src="activeScenario.image" alt="image du scénario">
       </div>
-      </div>
+    </div>
+
+    <div class="dead">
+      <h2>You are dead.</h2>
+      <h2>No more oxygen..</h2>
+      <RouterLink to="/intro">
+        <p>Try again</p>
+      </RouterLink>
+    </div>
   </div>
 </template>
 
@@ -81,6 +116,37 @@ const activeScenario = computed(() => {
   flex-direction: column-reverse;
   height: 100vh;
   position: relative;
+
+  .dead {
+    color: white;
+    position: fixed;
+    background: black;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: $font-poppins;
+    font-weight: 100;
+    font-size: rem(16);
+    text-transform: uppercase;
+    letter-spacing: rem(10);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: rem(200);
+    display: none;
+    a{
+      text-decoration: none;
+      color: white;
+      letter-spacing: rem(10);
+        font-size: rem(10);
+        margin-top: rem(50);
+    }
+  }
+
   &-left {
     position: absolute;
     top: 0;
@@ -89,14 +155,13 @@ const activeScenario = computed(() => {
     width: 15%;
     padding: rem(20) rem(0) rem(0) rem(50);
     white-space: nowrap;
-    z-index: 9999999999;
+    z-index: 20;
     a {
       color: white;
       text-decoration: none;
       font-weight: 200;
       font-size: rem(10);
       font-family: $font-poppins;
-
       .return {
         border-bottom: 1px solid transparent;
         transition: all .4s ease-in;
@@ -104,7 +169,6 @@ const activeScenario = computed(() => {
         position: relative;
         display: inline;
         cursor: pointer;
-
         &::after {
           content: '';
           position: absolute;
@@ -117,7 +181,6 @@ const activeScenario = computed(() => {
           transform-origin: left;
           transition: transform .2s ease-in;
         }
-
         &:hover::after {
           transform: scaleX(1);
         }
@@ -143,7 +206,6 @@ const activeScenario = computed(() => {
       justify-content: center;
       margin-top: rem(40);
     }
-
     &-content {
       display: flex;
       flex-direction: column;
@@ -152,20 +214,22 @@ const activeScenario = computed(() => {
       // width: rem(350);
       margin: rem(30) auto;
       font-size: rem(10);
-      .status{
+      .status {
         display: flex;
         flex-direction: column;
         gap: rem(5);
         margin-top: rem(20);
-        .o2{
-        display: flex;  
-        gap: rem(10);
+        .o2 {
+          display: flex;
+          gap: rem(10);
         }
       }
+
       p {
         font-weight: 200;
         line-height: rem(20);
       }
+
       .btn {
         width: fit-content;
         margin-top: rem(20);
@@ -181,15 +245,18 @@ const activeScenario = computed(() => {
         cursor: pointer;
         text-align: left;
       }
+
       .choix {
         margin-top: rem(40);
       }
     }
   }
+
   &-right {
     overflow: hidden;
     position: relative;
-    z-index: 99;
+    z-index: 10;
+
     img {
       width: 100%;
     }
@@ -216,21 +283,25 @@ const activeScenario = computed(() => {
     display: flex;
     flex-direction: row;
     width: 100%;
+
     &-left {
       position: initial;
       width: 15%;
       padding: rem(40) rem(0) rem(0) rem(40);
-  
+
       a {
         font-size: rem(16);
       }
     }
-    &-middle{
+
+    &-middle {
       width: rem(425);
     }
-    &-right{
-      flex:1;
-      img{
+
+    &-right {
+      flex: 1;
+
+      img {
         max-width: rem(757);
       }
     }
@@ -240,13 +311,14 @@ const activeScenario = computed(() => {
 
 @media screen and (min-width: 1440px) {
   .container {
-    &-right{
-      flex:1;
+    &-right {
+      flex: 1;
       display: flex;
       justify-content: center;
-      img{
+
+      img {
         max-width: rem(757);
-        
+
       }
     }
   }
