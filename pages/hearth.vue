@@ -1,13 +1,15 @@
 <script setup>
 import { client } from '@/utils/axios';
+import { watch } from 'vue';
 
 const bddData = ref([]);
 const scenarioData = ref([])
 const currentScenarioID = ref(1);
-const oxygenLevel = ref(100); // Pourcentage d'oxygène initial
-const timerDuration = 5; // 5 minutes en secondes
+const oxygenLevel = ref(100);
+const timerDuration = 300;
 const countdown = ref(timerDuration);
 
+let interval; 
 
 onBeforeMount(async () => {
   try {
@@ -25,11 +27,25 @@ onBeforeMount(async () => {
   }
 });
 
-const handleResponse = (nextScenarioID) => {
-  if (nextScenarioID !== null) {
-    currentScenarioID.value = nextScenarioID;
+watch(currentScenarioID, (newVal, oldVal) => {
+  const scenarioActuel = scenarioData.value.find(item => item.scenarioID === newVal);
+  if (scenarioActuel && scenarioActuel.scenarioSuivant1 === null && scenarioActuel.scenarioSuivant2 === null) {
+    clearInterval(interval);
+    const endGameInterface = document.getElementsByClassName('end')[0];
+    endGameInterface.style.display = 'flex';
   }
-  // si scénario fini faire : 
+});
+
+const handleResponse = (nextScenarioID) => {
+  if (nextScenarioID === null) {
+    // C'est la fin du scénario
+    clearInterval(interval); // Arrêter le compte à rebours
+    // Afficher un message de fin ou effectuer une redirection
+    const endGameInterface = document.getElementsByClassName('end')[0];
+    endGameInterface.style.display = 'flex';
+    return; // Sortir de la fonction pour ne pas modifier `currentScenarioID`
+  }
+  currentScenarioID.value = nextScenarioID;
 }
 
 const activeScenario = computed(() => {
@@ -38,14 +54,14 @@ const activeScenario = computed(() => {
 
 
 const startCountdown = () => {
-  const interval = setInterval(() => {
+  interval = setInterval(() => { // Retirez "const" pour utiliser la variable "interval" déclarée en dehors
     countdown.value--;
     oxygenLevel.value = (countdown.value / timerDuration) * 100;
 
     if (countdown.value <= 0 || oxygenLevel.value <= 0) {
       clearInterval(interval);
       const deadInterface = document.getElementsByClassName('dead')[0];
-      deadInterface.style.display = 'flex'
+      deadInterface.style.display = 'flex';
     }
   }, 1000); // Mise à jour chaque seconde
 
@@ -55,7 +71,7 @@ const startCountdown = () => {
 };
 
 onMounted(() => {
-  startCountdown(); // Lance le décompte dès que le composant est monté
+  startCountdown();
 });
 </script>
 
@@ -87,10 +103,6 @@ onMounted(() => {
               </div>
             </div>
           </div>
-
-
-
-
         </div>
       </div>
     </div>
@@ -107,6 +119,15 @@ onMounted(() => {
         <p>Try again</p>
       </RouterLink>
     </div>
+
+    <div class="end">
+      <h2>Congratulations</h2>
+      <h2>You completed this planet</h2>
+      <RouterLink to="/intro">
+        <p>Back to ship</p>
+      </RouterLink>
+    </div>
+
   </div>
 </template>
 
@@ -138,6 +159,7 @@ onMounted(() => {
     align-items: center;
     padding-bottom: rem(200);
     display: none;
+    animation: fadeIn .5s;
     a{
       text-decoration: none;
       color: white;
@@ -146,7 +168,36 @@ onMounted(() => {
         margin-top: rem(50);
     }
   }
-
+  .end {
+    color: white;
+    position: fixed;
+    background: black;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: $font-poppins;
+    font-weight: 100;
+    font-size: rem(16);
+    text-transform: uppercase;
+    letter-spacing: rem(10);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: rem(200);
+    display: none;
+    animation: fadeIn .2s;
+    a{
+      text-decoration: none;
+      color: white;
+      letter-spacing: rem(10);
+        font-size: rem(10);
+        margin-top: rem(50);
+    }
+  }
   &-left {
     position: absolute;
     top: 0;
@@ -263,6 +314,11 @@ onMounted(() => {
   }
 }
 
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 
 @media screen and (min-width:768px) {
   .container {
@@ -308,6 +364,7 @@ onMounted(() => {
   }
 
 }
+
 
 @media screen and (min-width: 1440px) {
   .container {
