@@ -32,8 +32,9 @@ onBeforeMount(async () => {
             <div class="container-middle">
                 <MyCard @update:currentIndex="updateCurrentIndex" class="middle_card"></MyCard>
             </div>
-            <div class="container-right">
-                <img v-if="planeteData.length > 0" :src="planeteData[currentIndex].image" alt="Image de la planète">
+            <div class="container-right" >
+                <!-- <img v-if="planeteData.length > 0" :src="planeteData[currentIndex].image" alt="Image de la planète"> -->
+                <three v-if="planeteData.length > 0 && planeteData[currentIndex]" :textureUrl="planeteData[currentIndex].image" />
             </div>
         </div>
         <div class="bottom" v-if="planeteData.length > 0">
@@ -117,13 +118,13 @@ onBeforeMount(async () => {
         }
 
         &-right {
-            margin: rem(80) auto rem(0);
-            display: flex;
-            justify-content: center;
-
-            img {
-                width: 80%;
-            }
+            // margin: rem(80) auto rem(0);
+            // display: flex;
+            // justify-content: center;
+           
+            // img {
+            //     width: 80%;
+            // }
         }
     }
 
@@ -198,13 +199,14 @@ onBeforeMount(async () => {
             }
 
             &-right {
+               
                 margin: 0;
                 all: initial;
                 display: flex;
                 justify-content: center;
                 align-items: flex-start;
                 flex: 1;
-
+            
                 img {
                     all: initial;
                     width: 40vw;
