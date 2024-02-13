@@ -84,8 +84,6 @@ watch(() => props.textureUrl, (newValue) => {
     planet.material.map = texture;
     planet.material.needsUpdate = true;
   }
-
-  
 });
 
 

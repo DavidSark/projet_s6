@@ -1,6 +1,9 @@
 <template>
   <div>
-    <three />
+    <threetest />
+
+    <router-link 
+    to="/intro">Intro</router-link>
   </div>
 </template>
 

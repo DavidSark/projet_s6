@@ -7,7 +7,7 @@ const updateCurrentIndex = (newIndex) => {
     currentIndex.value = newIndex;
 };
 
-onBeforeMount(async () => {
+onMounted(async () => {
     try {
         const response = await client.get('/planete');
         planeteData.value = response.data;
@@ -27,6 +27,10 @@ onBeforeMount(async () => {
             <div class="container-left">
                 <RouterLink to="/instructions">
                     <p class="instructions">Instructions</p>
+                </RouterLink>
+                <br>
+                <RouterLink to="/test">
+                    <p class="instructions">test</p>
                 </RouterLink>
             </div>
             <div class="container-middle">
