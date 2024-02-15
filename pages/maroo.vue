@@ -1,12 +1,15 @@
 <script setup>
 import { client } from '@/utils/axios';
+import { watch } from 'vue';
 
 const bddData = ref([]);
 const scenarioData = ref([])
-const currentScenarioID = ref(4);
+const currentScenarioID = ref(12);
+const oxygenLevel = ref(100);
+const timerDuration = 300;
+const countdown = ref(timerDuration);
 
-
-
+let interval; 
 
 onBeforeMount(async () => {
   try {
@@ -24,17 +27,60 @@ onBeforeMount(async () => {
   }
 });
 
-const handleResponse = (nextScenarioID) => {
-  if (nextScenarioID !== null) {
-    currentScenarioID.value = nextScenarioID;
+watch(currentScenarioID, (newVal, oldVal) => {
+  const scenarioActuel = scenarioData.value.find(item => item.scenarioID === newVal);
+  if (scenarioActuel && scenarioActuel.scenarioSuivant1 === null && scenarioActuel.scenarioSuivant2 === null) {
+    clearInterval(interval);
+    const endGameInterface = document.getElementsByClassName('end')[0];
+    endGameInterface.style.display = 'flex';
   }
-  // si scénario fini faire : 
+});
+
+const handleResponse = (nextScenarioID) => {
+  if (nextScenarioID === 1000) {
+    // C'est la fin du scénario
+    clearInterval(interval); // Arrêter le compte à rebours
+    // Afficher un message de fin ou effectuer une redirection
+    const endGameInterface = document.getElementsByClassName('end')[0];
+    endGameInterface.style.display = 'flex';
+    return; // Sortir de la fonction pour ne pas modifier `currentScenarioID`
+  }
+  else if (nextScenarioID === 999) {
+    // C'est la fin du scénario
+    clearInterval(interval); // Arrêter le compte à rebours
+    // Afficher un message de fin ou effectuer une redirection
+    const endGameInterface = document.getElementsByClassName('dead')[0];
+    endGameInterface.style.display = 'flex';
+    return; // Sortir de la fonction pour ne pas modifier `currentScenarioID`
+  }
+  currentScenarioID.value = nextScenarioID;
 }
 
 const activeScenario = computed(() => {
   return scenarioData.value.find(item => item.scenarioID === currentScenarioID.value);
 });
 
+
+const startCountdown = () => {
+  interval = setInterval(() => { // Retirez "const" pour utiliser la variable "interval" déclarée en dehors
+    countdown.value--;
+    oxygenLevel.value = (countdown.value / timerDuration) * 100;
+
+    if (countdown.value <= 0 || oxygenLevel.value <= 0) {
+      clearInterval(interval);
+      const deadInterface = document.getElementsByClassName('dead')[0];
+      deadInterface.style.display = 'flex';
+    }
+  }, 1000); // Mise à jour chaque seconde
+
+  onUnmounted(() => {
+    clearInterval(interval);
+  });
+};
+
+onMounted(() => {
+  startCountdown();
+});
 </script>
 
 
@@ -48,7 +94,7 @@ const activeScenario = computed(() => {
       </RouterLink>
     </div>
     <div class="container-middle">
-      <h2>Mars</h2>
+      <h2>Maroo</h2>
       <div v-for="item in scenarioData" :key="item.scenarioID">
         <div v-if="item.scenarioID === currentScenarioID">
           <div class="container-middle-content">
@@ -56,12 +102,12 @@ const activeScenario = computed(() => {
             <p class="choix">What do you decide ?</p>
             <button class="btn" v-if="item.reponse1" @click="handleResponse(item.scenarioSuivant1)">{{ item.reponse1
             }}</button>
-            <button class="btn" v-if="item.reponse2" @click="handleResponse(item.scenarioSuivant2)">{{ item.reponse2
+            <button class="btn btn2"  v-if="item.reponse2 && item.scenarioSuivant2 !== 1001" @click="handleResponse(item.scenarioSuivant2)">{{ item.reponse2
             }}</button>
             <div class="status">
               <p>Status</p>
               <div class="o2">
-                <!-- <p>O₂ : {{ oxygenLevel.toFixed(0) }}%</p> -->
+                <p>O₂ : {{ oxygenLevel.toFixed(0) }}%</p>
               </div>
             </div>
           </div>
@@ -75,9 +121,21 @@ const activeScenario = computed(() => {
     </div>
 
     <div class="dead">
-      <h2>You're out of oxygen..</h2>
-      <p>Try again</p>
+      <h2>You are dead.</h2>
+      
+      <RouterLink to="/intro">
+        <p>Try again</p>
+      </RouterLink>
     </div>
+
+    <div class="end">
+      <h2>Congratulations</h2>
+      <h2>You completed this planet</h2>
+      <RouterLink to="/intro">
+        <p>Back to ship</p>
+      </RouterLink>
+    </div>
+
   </div>
 </template>
 
@@ -89,34 +147,65 @@ const activeScenario = computed(() => {
   position: relative;
 
   .dead {
-    margin: initial;
     color: white;
     position: fixed;
     background: black;
-    z-index: 99999999999999;
+    z-index: 99;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    font-family: $font-poppins;
     font-weight: 100;
-    font-size: rem(32);
-    //font-size: rem(64);
+    font-size: rem(16);
     text-transform: uppercase;
-    letter-spacing: rem(20);
+    letter-spacing: rem(10);
+    text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding-bottom: rem(200);
     display: none;
-    p {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      width: 90%;
-      // width: rem(350);
-      margin: rem(30) auto;
-      font-size: rem(10);
+    animation: fadeIn .5s;
+    a{
+      text-decoration: none;
+      color: white;
+      letter-spacing: rem(10);
+        font-size: rem(10);
+        margin-top: rem(50);
     }
   }
-
+  .end {
+    color: white;
+    position: fixed;
+    background: black;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: $font-poppins;
+    font-weight: 100;
+    font-size: rem(16);
+    text-transform: uppercase;
+    letter-spacing: rem(10);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: rem(200);
+    display: none;
+    animation: fadeIn .2s;
+    a{
+      text-decoration: none;
+      color: white;
+      letter-spacing: rem(10);
+        font-size: rem(10);
+        margin-top: rem(50);
+    }
+  }
   &-left {
     position: absolute;
     top: 0;
@@ -125,15 +214,13 @@ const activeScenario = computed(() => {
     width: 15%;
     padding: rem(20) rem(0) rem(0) rem(50);
     white-space: nowrap;
-    z-index: 9999999999;
-
+    z-index: 20;
     a {
       color: white;
       text-decoration: none;
       font-weight: 200;
       font-size: rem(10);
       font-family: $font-poppins;
-
       .return {
         border-bottom: 1px solid transparent;
         transition: all .4s ease-in;
@@ -141,7 +228,6 @@ const activeScenario = computed(() => {
         position: relative;
         display: inline;
         cursor: pointer;
-
         &::after {
           content: '';
           position: absolute;
@@ -154,7 +240,6 @@ const activeScenario = computed(() => {
           transform-origin: left;
           transition: transform .2s ease-in;
         }
-
         &:hover::after {
           transform: scaleX(1);
         }
@@ -170,7 +255,6 @@ const activeScenario = computed(() => {
     width: 100%;
     height: 99vh;
     position: relative;
-
     h2 {
       font-weight: 100;
       font-size: rem(32);
@@ -181,7 +265,6 @@ const activeScenario = computed(() => {
       justify-content: center;
       margin-top: rem(40);
     }
-
     &-content {
       display: flex;
       flex-direction: column;
@@ -190,13 +273,11 @@ const activeScenario = computed(() => {
       // width: rem(350);
       margin: rem(30) auto;
       font-size: rem(10);
-
       .status {
         display: flex;
         flex-direction: column;
         gap: rem(5);
         margin-top: rem(20);
-
         .o2 {
           display: flex;
           gap: rem(10);
@@ -233,12 +314,17 @@ const activeScenario = computed(() => {
   &-right {
     overflow: hidden;
     position: relative;
-    z-index: 99;
+    z-index: 10;
 
     img {
       width: 100%;
     }
   }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 
@@ -286,6 +372,7 @@ const activeScenario = computed(() => {
   }
 
 }
+
 
 @media screen and (min-width: 1440px) {
   .container {

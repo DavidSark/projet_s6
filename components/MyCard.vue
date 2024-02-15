@@ -34,7 +34,7 @@ const goToPreviousPlanet = () => {
 
 const currentPlanetUrl = computed(() => {
     const planetName = planeteData.value[currentIndex.value]?.nom.toLowerCase();
-    return planetName === 'terre' ? '/hearth' : planetName === 'mars' ? '/mars' : '';
+    return planetName === 'maroo' ? '/maroo' : planetName === 'zypera' ? '/zypera' : '';
 });
 
 const navigate = () => {

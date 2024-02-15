@@ -1,6 +1,5 @@
 <script setup>
 import { client } from '@/utils/axios';
-import { watch } from 'vue';
 
 const bddData = ref([]);
 const scenarioData = ref([])
@@ -37,7 +36,7 @@ watch(currentScenarioID, (newVal, oldVal) => {
 });
 
 const handleResponse = (nextScenarioID) => {
-  if (nextScenarioID === null) {
+  if (nextScenarioID === 1000) {
     // C'est la fin du scénario
     clearInterval(interval); // Arrêter le compte à rebours
     // Afficher un message de fin ou effectuer une redirection
@@ -45,13 +44,25 @@ const handleResponse = (nextScenarioID) => {
     endGameInterface.style.display = 'flex';
     return; // Sortir de la fonction pour ne pas modifier `currentScenarioID`
   }
+  else if (nextScenarioID === 999) {
+    // C'est la fin du scénario
+    clearInterval(interval); // Arrêter le compte à rebours
+    // Afficher un message de fin ou effectuer une redirection
+    const endGameInterface = document.getElementsByClassName('dead')[0];
+    endGameInterface.style.display = 'flex';
+    return; // Sortir de la fonction pour ne pas modifier `currentScenarioID`
+  }
+  // if (nextScenarioID === 1001) {
+  //   const noneBtn = document.getElementsByClassName('btn2')[0];
+  //   noneBtn.style.display = 'none';
+  //   return; // Sortir de la fonction pour ne pas modifier `currentScenarioID`
+  // }
   currentScenarioID.value = nextScenarioID;
 }
 
 const activeScenario = computed(() => {
   return scenarioData.value.find(item => item.scenarioID === currentScenarioID.value);
 });
-
 
 const startCountdown = () => {
   interval = setInterval(() => { // Retirez "const" pour utiliser la variable "interval" déclarée en dehors
@@ -86,7 +97,7 @@ onMounted(() => {
       </RouterLink>
     </div>
     <div class="container-middle">
-      <h2>Hearth</h2>
+      <h2>Zypera</h2>
       <div v-for="item in scenarioData" :key="item.scenarioID">
         <div v-if="item.scenarioID === currentScenarioID">
           <div class="container-middle-content">
@@ -94,7 +105,7 @@ onMounted(() => {
             <p class="choix">What do you decide ?</p>
             <button class="btn" v-if="item.reponse1" @click="handleResponse(item.scenarioSuivant1)">{{ item.reponse1
             }}</button>
-            <button class="btn" v-if="item.reponse2" @click="handleResponse(item.scenarioSuivant2)">{{ item.reponse2
+            <button class="btn btn2" v-if="item.reponse2 && item.scenarioSuivant2 !== 1001" @click="handleResponse(item.scenarioSuivant2)">{{ item.reponse2
             }}</button>
             <div class="status">
               <p>Status</p>
@@ -113,8 +124,7 @@ onMounted(() => {
     </div>
 
     <div class="dead">
-      <h2>You are dead.</h2>
-      <h2>No more oxygen..</h2>
+      <h2>You are dead...</h2>
       <RouterLink to="/intro">
         <p>Try again</p>
       </RouterLink>
@@ -127,7 +137,6 @@ onMounted(() => {
         <p>Back to ship</p>
       </RouterLink>
     </div>
-
   </div>
 </template>
 
@@ -168,6 +177,7 @@ onMounted(() => {
         margin-top: rem(50);
     }
   }
+
   .end {
     color: white;
     position: fixed;
@@ -198,6 +208,7 @@ onMounted(() => {
         margin-top: rem(50);
     }
   }
+  
   &-left {
     position: absolute;
     top: 0;
@@ -206,13 +217,15 @@ onMounted(() => {
     width: 15%;
     padding: rem(20) rem(0) rem(0) rem(50);
     white-space: nowrap;
-    z-index: 20;
+    z-index: 9999999999;
+
     a {
       color: white;
       text-decoration: none;
       font-weight: 200;
       font-size: rem(10);
       font-family: $font-poppins;
+
       .return {
         border-bottom: 1px solid transparent;
         transition: all .4s ease-in;
@@ -220,6 +233,7 @@ onMounted(() => {
         position: relative;
         display: inline;
         cursor: pointer;
+
         &::after {
           content: '';
           position: absolute;
@@ -232,6 +246,7 @@ onMounted(() => {
           transform-origin: left;
           transition: transform .2s ease-in;
         }
+
         &:hover::after {
           transform: scaleX(1);
         }
@@ -247,6 +262,7 @@ onMounted(() => {
     width: 100%;
     height: 99vh;
     position: relative;
+
     h2 {
       font-weight: 100;
       font-size: rem(32);
@@ -257,6 +273,7 @@ onMounted(() => {
       justify-content: center;
       margin-top: rem(40);
     }
+
     &-content {
       display: flex;
       flex-direction: column;
@@ -265,11 +282,13 @@ onMounted(() => {
       // width: rem(350);
       margin: rem(30) auto;
       font-size: rem(10);
+
       .status {
         display: flex;
         flex-direction: column;
         gap: rem(5);
         margin-top: rem(20);
+
         .o2 {
           display: flex;
           gap: rem(10);
@@ -306,17 +325,12 @@ onMounted(() => {
   &-right {
     overflow: hidden;
     position: relative;
-    z-index: 10;
+    z-index: 99;
 
     img {
       width: 100%;
     }
   }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
 }
 
 
@@ -364,7 +378,6 @@ onMounted(() => {
   }
 
 }
-
 
 @media screen and (min-width: 1440px) {
   .container {
