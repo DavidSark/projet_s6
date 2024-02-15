@@ -17,22 +17,22 @@ const toggleAbout = () => {
     <div class="container_right">
       <div class="container_right-content" v-if="isAbout === false">
 
-        <div class="container_about">         
+        <!-- <div class="container_about">         
           <p class="about" @click="toggleAbout()">About</p>
-        </div>
+        </div> -->
         <h2>Instructions</h2>
         <p class="container_right-content-p">
-          Bienvenue dans la mission Journey. À travers les étoiles vous avez pour but d'explorer des mondes lointains et mystérieux. Ce voyage unique est conçu pour découvrir ce qu'il y a au délà de notre simple monde : la Terre. Éveiller votre curiosité et élargir votre compréhension de thèmes complexes tels que la survie, l'adaptation, et la symbiose dans des environnements extraterrestres afin de mieux comprendre le concepte de l'alérité. Qu'allez vous trouver au travers des planètes qui peuvent exister dans l'immensité de l'espace. L'être humain lui-même ne sait pas ce qu'il peut trouver dans l'espace et la découverte de nouveaux êtres vivants humanoïdes, monstrueux, ou qu'importe leur type et métabolisme, constitue une différence avec nous, humains. C'est cette différence que vous devrez trouver.
+          Welcome to the Journey mission. Through the stars, your goal is to explore distant and mysterious worlds. This unique journey is designed to discover what lies beyond our simple world: Earth. Awaken your curiosity and broaden your understanding of complex themes such as survival, adaptation and symbiosis in extraterrestrial environments to better understand the concept of alerity. What will you find across the planets that may exist in the vastness of space? Human beings themselves don't know what they might find in space, and the discovery of new living beings - humanoid, monstrous, or whatever their type and metabolism may be - constitutes a difference with us humans. That's the difference you'll have to find.
           
           <br>
           <br>
-          Mais faites attention, une fois sur la planète il n'y a que vous, vos décisisons et votre oxygen limité...
+          But be careful, once on the planet there's only you, your decisions and your limited oxygen...
         </p>
         <MyButton class="button_start" href="/intro">start mission</MyButton>
       </div>
 
 
-      <div class="container_right-content" v-else>
+      <!-- <div class="container_right-content" v-else>
 
         <div class="container_about">         
           <p class="about" @click="toggleAbout()">Instructions</p>
@@ -42,7 +42,7 @@ const toggleAbout = () => {
         
         </p>
         <MyButton class="button_start" href="/intro">start mission</MyButton>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

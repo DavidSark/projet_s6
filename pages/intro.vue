@@ -28,10 +28,6 @@ onMounted(async () => {
                 <RouterLink to="/instructions">
                     <p class="instructions">Instructions</p>
                 </RouterLink>
-                <br>
-                <RouterLink to="/test">
-                    <p class="instructions">test</p>
-                </RouterLink>
             </div>
             <div class="container-middle">
                 <MyCard @update:currentIndex="updateCurrentIndex" class="middle_card"></MyCard>

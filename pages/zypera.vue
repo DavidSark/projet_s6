@@ -102,7 +102,7 @@ onMounted(() => {
         <div v-if="item.scenarioID === currentScenarioID">
           <div class="container-middle-content">
             <p>{{ item.description }}</p>
-            <p class="choix">What do you decide ?</p>
+            
             <button class="btn" v-if="item.reponse1" @click="handleResponse(item.scenarioSuivant1)">{{ item.reponse1
             }}</button>
             <button class="btn btn2" v-if="item.reponse2 && item.scenarioSuivant2 !== 1001" @click="handleResponse(item.scenarioSuivant2)">{{ item.reponse2
@@ -302,7 +302,7 @@ onMounted(() => {
 
       .btn {
         width: fit-content;
-        margin-top: rem(20);
+        margin-top: rem(50);
         display: inline-block;
         text-decoration: none;
         background: transparent;
@@ -316,8 +316,8 @@ onMounted(() => {
         text-align: left;
       }
 
-      .choix {
-        margin-top: rem(40);
+      .btn2 {
+        margin-top: rem(20);
       }
     }
   }

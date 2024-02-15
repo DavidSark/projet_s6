@@ -1,6 +1,6 @@
 --Insertion planete
-INSERT INTO Planete (nom, description, atmosphere, population, atterissage, visite, image) VALUES ('Maroo', 'Maroon est une planète désertique, balayée par des vents forts et marquée par des tempêtes de sable fréquentes. Sa surface aride à l''air de ne rien cacher. Il semble ne pas avoir de vie sur cette planète et elle a l''air très hostile..', 'Épaisse - Gazeuse', 'Inconu', 'Possible', 'Déjà visité', '/img/texture1.jpg');
-INSERT INTO Planete (nom, description, atmosphere, population, atterissage, visite, image) VALUES ('Zypera', 'Zypera est une planète recouverte d''une forêt dense et mystérieuse, baignée d''une lumière bleutée due à son soleil lointain. Cette lumière particulière semble donner des propriétés uniques à la faune et à la flore de la planète. Il semblait y avoir de la vie sur cette planète mais soudainement tout à disparut..', 'Fine - Gazeuse', 'Inconnu', 'Possible', 'Non visité', '/img/texture4.jpg');
+INSERT INTO Planete (nom, description, atmosphere, population, atterissage, visite, image) VALUES ('Maroo', 'Maroon is a desert planet, swept by strong winds and marked by frequent sandstorms. Its arid surface seems to hide nothing. There seems to be no life on this planet, and it looks very hostile...', 'Thick - Fizzy', 'Unknown', 'Possible', 'Déjà visité', '/img/texture1.jpg');
+INSERT INTO Planete (nom, description, atmosphere, population, atterissage, visite, image) VALUES ('Zypera', 'Zypera is a planet covered in dense, mysterious forest, bathed in bluish light from its distant sun. This particular light seems to give unique properties to the planet''s flora and fauna. There seemed to be life on this planet, but suddenly it all disappeared...', 'Fine - Sparkling', 'Unknown', 'Possible', 'Non visité', '/img/texture4.jpg');
 
 --Insertion Interface
 INSERT INTO Interface (vie, oxygen, planeteID) VALUES (100,100,1);
@@ -8,81 +8,81 @@ INSERT INTO Interface (vie, oxygen, planeteID) VALUES (100,100,2);
 
 INSERT INTO Scenario (description, reponse1, reponse2, image, scenarioSuivant1, scenarioSuivant2, planeteID)
 -- début ID = 1 :
-VALUES ("Vous êtes arrivé sur la planète Zypera, une jungle dense et mystérieuse s'étend devant vous. Votre mission : explorer cette nouvelle terre et   découvrir ses secrets.", 'Explorer', 'Retourner au vaisseau', '/img/zypera/image1.webp',2,3,2),
+VALUES ("You've arrived on the planet Zypera, a dense, mysterious jungle stretching out before you. Your mission: to explore this new land and discover its secrets.", 'Explore', 'Back to the ship', '/img/zypera/image1.webp',2,3,2),
 -- explorer ID = 2 :
-("Vous décidez de vous enfoncer dans la jungle luxuriante. Les sons de la vie sauvage remplissent l'air, et vous sentez la curiosité vous envahir.
- Au cœur de la forêt, vous découvrez un autel ancien, émettant une douce lumière. Que faites-vous ? 
-", "Étudier l'autel", 'Continuer votre chemin', '/img//zypera/image2.webp',4,5,2),
+("You decide to head deep into the lush jungle. The sounds of wildlife fill the air, and you feel curiosity sweep over you.
+Deep in the forest, you discover an ancient altar, emitting a soft light.
+", "Studying the altar", 'Continue on your way', '/img//zypera/image2.webp',4,5,2),
 
 -- Retourner au vaisseau = 3 :
-("Vous choisissez de retourner au vaisseau, incertain de ce que vous pourriez trouver sur Zypera. Cependant, une fois à bord, un sentiment d'inachevé vous pousse à reconsidérer. La planète a des secrets à révéler. Retournez-vous sur Zypera ou terminez-vous la mission prématurément ?", "Retourner sur Zypera", 'Terminer la mission', '/img/zypera/image1.webp',1,1000,2),
+("You choose to return to the ship, unsure of what you might find on Zypera. However, once on board, a feeling of incompleteness prompts you to reconsider. The planet has secrets to reveal. Do you return to Zypera or end the mission prematurely?", "Back to Zypera", 'End mission', '/img/zypera/image1.webp',1,1000,2),
 
 -- Examiner l'autel ID = 4
-("Votre examen de l'autel déclenche une séquence de lumières, révélant l'histoire d'une civilisation qui a fusionné avec la planète. Vous réalisez que la vie sur Zypera est interconnectée d'une manière que vous n'auriez jamais imaginée. Les lumières forment des images, vous montrant des êtres qui vivaient en harmonie avec leur environnement, partageant une conscience collective. Vous êtes ému par leur décision de devenir un avec Zyphera pour sauver leur monde de la destruction.", "Continuer la communication", '', '/img/zypera/image4.webp',6,1001,2),
+("Your examination of the altar triggers a sequence of lights, revealing the history of a civilization that merged with the planet. You realize that life on Zypera is interconnected in ways you'd never imagined. The lights form images, showing you beings who lived in harmony with their environment, sharing a collective consciousness. You are touched by their decision to become one with Zyphera to save their world from destruction.", "Continue communication", '', '/img/zypera/image4.webp',6,1001,2),
 
 
 --Continuer chemin ID = 5
-("Vous décidez de ne pas interférer avec l'autel et continuez votre exploration. Vous vous enfoncez toujours plus profondément dans la jungle. Elle devient de plus en plus sombre et dense. 
-Au fur et à mesure de votre avancée, vous tombez sur ce qui semble être une plante géante.
-Elle semble vous regarder avec appétit...", "Retourner lentement vers l'autel", "Traverser quand même, la plante à l'air gentille", '/img/zypera/image3.webp',2,999,2),
+("You decide not to interfere with the altar and continue your exploration. You go deeper and deeper into the jungle. It becomes darker and denser. 
+As you advance, you come across what appears to be a giant plant.
+It seems to be eyeing you hungrily...", "Slowly return to the altar", "Cross anyway, the plant looks nice", '/img/zypera/image3.webp',2,999,2),
 
 --Continuer la communication ID = 6
-("Vous vous concentrez, tentant de ressentir la connexion avec la planète. Au bout de quelques moments, vous commencez à percevoir des murmures, une indication de la conscience collective de Zyphera. Elle vous accueille et partage des visions d'une symbiose parfaite entre la nature et ses habitants, vous enseignant l'importance de l'équilibre et de la préservation.", "Demander des conseils sur comment aider la Terre", "", '/img/zypera/image5.webp',7,1001,2),
+("You concentrate, trying to feel the connection with the planet. After a few moments, you begin to hear whispers, an indication of Zyphera's collective consciousness. She welcomes you and shares visions of a perfect symbiosis between nature and its inhabitants, teaching you the importance of balance and preservation.", "Ask for advice on how to help the Earth", "", '/img/zypera/image5.webp',7,1001,2),
 
 --Demander des conseils ID = 7
-("Après de longue explications sur comment adopter des pratiques qui assurent que les ressources de la Terre ne sont pas épuisées plus rapidement qu'elles ne peuvent se régénérer. Encourager une prise de conscience globale de l'interconnectivité entre les peuples et la nature, travaillant ensemble pour protéger et nourrir l'environnement et Développer des technologies qui améliorent la qualité de vie sans compromettre la santé de la planète
-Vous prenez un moment pour réfléchir à la manière dont vous pouvez les intégrer dans votre vie et les partager avec le monde. La conscience de Zyphera vous offre une dernière vision, celle d'un futur où la Terre et ses habitants vivent en paix, en harmonie avec la nature, inspirés par votre témoignage et votre engagement.", "Suite", "", '/img/zypera/image4.webp',8,1001,2),
+("After lengthy explanations of how to adopt practices that ensure the Earth's resources are not depleted faster than they can regenerate. Encourage global awareness of the interconnectedness between people and nature, working together to protect and nurture the environment, and Develop technologies that improve quality of life without compromising the health of the planet.
+You take a moment to think about how you can integrate these into your life and share them with the world. Zyphera's consciousness offers you one last vision, that of a future where the Earth and its inhabitants live in peace, in harmony with nature, inspired by your testimony and your commitment.", "Continue", "", '/img/zypera/image4.webp',8,1001,2),
 
 --Demander des conseils suite ID = 8
-("Alors que vous êtes sur le point de conclure votre communication avec la conscience de Zyphera, elle vous transmet une requête, une tâche qui nécessitera votre courage, votre ingéniosité et votre dévouement. Zyphera, bien qu'évoluée et harmonieuse, est menacée par une forme invasive, une plante étrangère introduite accidentellement par une comète. Cette plante commence à perturber l'équilibre écologique de Zyphera, menaçant la symbiose planétaire.", "Accepter d'aider la planète", "Ignorer la demande et retourner au vaisseau avec les informations", '/img/zypera/image4.webp',9,1000,2),
+("Just as you are about to conclude your communication with Zyphera's consciousness, she sends you a request, a task that will require your courage, ingenuity and dedication. Zyphera, though evolved and harmonious, is threatened by an invasive form, an alien plant accidentally introduced by a comet. This plant is beginning to disrupt Zyphera's ecological balance, threatening planetary symbiosis.", "Agreeing to help the planet", "Ignore the request and return to the ship with the information", '/img/zypera/image4.webp',9,1000,2),
 
 --Accepter d'aider ID = 9
-("La conscience de Zyphera vous guide vers une région reculée de la planète où pousse un spécimen rare, l'Herbe de Lumière, capable de neutraliser l'invasion.", "Prendre un echantillon de l'herbe et la ramener à l'autel.", "", '/img/zypera/image6.webp',10,1001,2),
+("Zyphera's consciousness guides you to a remote part of the planet where a rare specimen, the Herb of Light, grows, capable of neutralizing the invasion.", "Take a sample of the herb and bring it back to the altar.", "", '/img/zypera/image6.webp',10,1001,2),
 
 --Prendre l'échantillon ID = 10
-("la menace est rapidement neutralisée, rétablissant l'équilibre. La conscience de Zyphera vous remercie profondément, soulignant que votre succès n'est pas seulement une victoire pour Zyphera, mais un exemple de ce que l'on peut accomplir lorsque les êtres travaillent ensemble pour le bien commun même s'ils sont à des années lumières les uns des autres. La différence n'est rien quand la volonté d'aider et de comprendre l'autre transcende les distances et les différences. Cette expérience vous a montré qu'au-delà des apparences, tous les êtres partagent un lien commun : la vie elle-même et son fragile équilibre. Vous prenez un moment pour réfléchir à l'impact de cette aventure sur votre propre vision du monde et comment vous pouvez l'appliquer à votre retour sur Terre.", "Suite", "", '/img/zypera/image7.webp',11,1001,2),
+("The threat is quickly neutralized, restoring the balance. The Zyphera conscience thanks you deeply, pointing out that your success is not only a victory for Zyphera, but an example of what can be achieved when beings work together for the common good even if they are light years apart. Difference is nothing when the will to help and understand others transcends distances and differences. This experience has shown you that, beyond appearances, all beings share a common bond: life itself and its fragile balance. You take a moment to reflect on the impact of this adventure on your own worldview, and how you can apply it on your return to Earth.", "Continue", "", '/img/zypera/image7.webp',11,1001,2),
 
 --Prendre l'échantillon ID = 11
-(" Cette expérience vous a montré qu'au-delà des apparences, tous les êtres partagent un lien commun : la vie elle-même et son fragile équilibre. Vous prenez un moment pour réfléchir à l'impact de cette aventure sur votre propre vision du monde et comment vous pouvez l'appliquer à votre retour sur Terre.
-La conscience de Zyphera, avant de vous laisser repartir, vous offre un cadeau : une petite capsule contenant l'essence de l'Herbe de Lumière, symbole de la guérison et de la coopération interespèces. Elle vous explique que cette essence peut servir de rappel que, même face à des défis apparemment insurmontables, il existe toujours une solution lorsque l'on combine les efforts et les connaissances.", "Remercier la planète et rentrer au vaisseau.", "", '/img/zypera/image4.webp',1000,1001,2),
+("This experience has shown you that, beyond appearances, all beings share a common bond: life itself and its fragile balance. You take a moment to reflect on the impact of this adventure on your own worldview, and how you can apply it when you return to Earth.
+Before letting you go, the Zyphera consciousness offers you a gift: a small capsule containing the essence of the Herb of Light, a symbol of healing and inter-species cooperation. She explains that this essence can serve as a reminder that, even in the face of seemingly insurmountable challenges, there is always a solution when effort and knowledge are combined.", "Thank the planet and return to the ship.", "", '/img/zypera/image4.webp',1000,1001,2),
 
 -- HISTOIRE MAROO
 --Arriver sur Maroo ID = 12
-("À peine votre vaisseau s'est-il posé sur le sol crayeux de Naroon que vous êtes frappé par la beauté austère de ce désert infini. Votre mission : explorer Naroon à la recherche de signes de vie passée ou présente et découvrir ses secrets cachés.", "Explorer", "Retourner au vaisseau", '/img/maroo/image1.webp',14,13,1),
+("No sooner has your ship touched down on the chalky soil of Naroon than you are struck by the stark beauty of this infinite desert. Your mission: to explore Naroon for signs of past or present life and discover its hidden secrets.", "Explore", "Back to the ship", '/img/maroo/image1.webp',14,13,1),
 
 --Arriver sur Maroo ID = 13
-("Vous choisissez de retourner au vaisseau, incertain de ce que vous pourriez trouver sur Maroo. Cependant, une fois à bord, un sentiment d'inachevé vous pousse à reconsidérer. La planète a des secrets à révéler. Retournez-vous sur Maroo ou terminez-vous la mission prématurément ?", "Retourner sur Maroo", "Terminer la mission", '/img/maroo/image1.webp',12,1000,1),
+("You choose to return to the ship, unsure of what you might find on Maroo. However, once on board, a feeling of incompleteness prompts you to reconsider. The planet has secrets to reveal. Do you return to Maroo or end the mission prematurely?", "Back to Maroo", "Complete mission", '/img/maroo/image1.webp',12,1000,1),
 
 --Arriver sur Maroo ID = 14
-("Vous parcourez le désert, utilisant des capteurs pour détecter toute anomalie. Votre persévérance est récompensée lorsque vous tombez sur un écosystème souterrain, un oasis caché, où la vie s'est adaptée pour prospérer malgré les conditions arides.", "Examiner", "Continuer le chemin", '/img/maroo/image2.webp',16,15,1),
+("You scour the desert, using sensors to detect any anomalies. Your perseverance is rewarded when you stumble upon an underground ecosystem, a hidden oasis, where life has adapted to thrive despite the arid conditions.", "Examine", "Follow the path", '/img/maroo/image2.webp',16,15,1),
 
 --Arriver sur Maroo ID = 15
-("Vous décidez de ne passer votre chemin.
-Aprés plusieurs minutes de marche vous tomber sur une tempete de sable étrange.
-", "Retourner s'abriter à l'oasis", "Traverser la tempete", '/img/maroo/image3.webp',14,999,1),
+("You decide to move on.
+After walking for several minutes, you come across a strange sandstorm.
+", "Back to the oasis for shelter", "Cross the storm", '/img/maroo/image3.webp',14,999,1),
 
 --Arriver sur Maroo ID = 16
-("Votre première examin vous conduit à un réseau de canyons où l'humidité piégée permet à une étonnante variété de plantes de prospérer. Ces plantes, à travers un système complexe de racines, semblent capables de capter l'humidité des rares pluies, créant des micro-écosystèmes.
-", "examiner les plantes de plus prés", "", '/img/maroo/image2.webp',17,1001,1),
+("Your first examination leads you to a network of canyons where trapped moisture allows an astonishing variety of plants to thrive. These plants, through a complex root system, seem able to capture moisture from the rare rainfall, creating micro-ecosystems.
+", "Take a closer look at plants", "", '/img/maroo/image2.webp',17,1001,1),
 
 --Arriver sur Maroo ID = 17
-("Ils sembleraient que les plantes ont évolué pour devenir ce que l'on pourrait appeler des 'prédateurs végétaux'. Certaines disposent de pièges passifs, comme des feuilles collantes ou des structures en forme d'entonnoir, capturant des insectes et parfois de petits animaux pour les décomposer et en absorber les nutriments. D'autres plantes sont dotées de mécanismes plus actifs, se refermant sur leurs proies avec des mouvements rapides déclenchés par le contact.
-", "prélever un échantillon", "", '/img/maroo/image4.webp',18,1001,1),
+("It seems that plants have evolved to become what we might call 'plant predators'. Some have passive traps, such as sticky leaves or funnel-shaped structures, capturing insects and sometimes small animals to decompose them and absorb nutrients. Other plants have more active mechanisms, closing in on their prey with rapid movements triggered by contact.
+", "Take a sample", "", '/img/maroo/image4.webp',18,1001,1),
 
 --Arriver sur Maroo ID = 18
-("En arrachant un morceau d'un des plantes, c'est comme si vous aviez réveiller toute la grotte, les plantes se mettes à vous attaquer
-", "S'enfuir !", "", '/img/maroo/image5.webp',19,1001,1),
+("If you tear off a piece of one of the plants, it's as if you've woken up the whole cave, and the plants start attacking you.
+", "Run away!", "", '/img/maroo/image5.webp',19,1001,1),
 
 --Arriver sur Maroo ID = 19
-("Vous arrivez à vous enfuir de la grotte.  
-", "continuer un peu d'explorer", "La planète est trop hostile, retourner au vaisseau", '/img/maroo/image6.webp',20,1000,1),
+("You manage to escape from the cave.
+", "Continue exploring", "The planet is too hostile to return to the ship", '/img/maroo/image6.webp',20,1000,1),
 
 --Arriver sur Maroo ID = 20
-("Vous tournez en rond dans la land désertique de Maroo..
-", "Continuer d'explorer", "Il n'y a vraiment rien, retourner au vaisseau", '/img/maroo/image7.webp',21,1000,1),
+("You're walking in circles in the desert land of Maroo...
+", "Continue exploring", "There's really nothing to go back to.", '/img/maroo/image7.webp',21,1000,1),
 --Arriver sur Maroo ID = 21
-("Malheureusement, Naroo, la planète désertique n'a pas l'air d'offrir quoi que ce soit en terme de ressource du à milieu hostile. Malgré les adaptations fascinantes des plantes carnivores qui montrent une intense lutte pour la survie, l'absence de ressources exploitables à première vue pose un défi majeur. Vous vous trouvez à un point critique de votre mission sur Naroon, confronté à la réalité austère de cette planète désertiquet
-", "Retourner au vaisseau", "", '/img/maroo/image7.webp',1000,1001,1);
+("Unfortunately, Naroo, the desert planet, doesn't seem to offer anything in terms of resources due to its hostile environment. Despite the fascinating adaptations of the carnivorous plants, which show an intense struggle for survival, the absence of resources that can be exploited at first sight poses a major challenge. You find yourself at a critical point in your mission on Naroon, confronted with the austere reality of this desolate planet.
+", "Back to the ship", "", '/img/maroo/image7.webp',1000,1001,1);
 
 
 
