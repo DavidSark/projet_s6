@@ -22,18 +22,11 @@ const toggleAbout = () => {
         </div>
         <h2>Instructions</h2>
         <p class="container_right-content-p">
-          Tiramisu chocolate chocolate bar jelly cake tiramisu. Liquorice croissant chocolate bonbon danish gummi bears
-          tiramisu marshmallow candy canes. Dessert sesame snaps chocolate carrot cake apple pie caramels gingerbread.
-          Wafer dragée bear claw tiramisu donut cookie candy soufflé. Bonbon tiramisu chocolate oat cake apple pie
-          brownie. Dragée fruitcake sugar plum cake gummi bears tart jelly-o jelly-o cupcake. Gummies sweet fruitcake
-          sweet roll soufflé.
-          <br />
-          <br />
-          Icing pastry icing halvah biscuit danish cheesecake oat cake macaroon. Candy canes candy chocolate cake jelly
-          apple pie liquorice. Cupcake lollipop candy bonbon oat cake lemon drops. Bear claw donut jujubes croissant
-          icing. Jelly beans donut pie jelly-o donut cake. Gingerbread gummi bears jujubes tart caramels. Jelly-o cake
-          gingerbread dragée liquorice cupcake jelly chocolate cake. Wafer marshmallow cotton candy cookie carrot cake
-          jelly-o soufflé. Shortbread jelly-o oat cake liquorice bonbon lollipop ice cream bonbon fruitcake.
+          Bienvenue dans la mission Journey. À travers les étoiles vous avez pour but d'explorer des mondes lointains et mystérieux. Ce voyage unique est conçu pour découvrir ce qu'il y a au délà de notre simple monde : la Terre. Éveiller votre curiosité et élargir votre compréhension de thèmes complexes tels que la survie, l'adaptation, et la symbiose dans des environnements extraterrestres afin de mieux comprendre le concepte de l'alérité. Qu'allez vous trouver au travers des planètes qui peuvent exister dans l'immensité de l'espace. L'être humain lui-même ne sait pas ce qu'il peut trouver dans l'espace et la découverte de nouveaux êtres vivants humanoïdes, monstrueux, ou qu'importe leur type et métabolisme, constitue une différence avec nous, humains. C'est cette différence que vous devrez trouver.
+          
+          <br>
+          <br>
+          Mais faites attention, une fois sur la planète il n'y a que vous, vos décisisons et votre oxygen limité...
         </p>
         <MyButton class="button_start" href="/intro">start mission</MyButton>
       </div>
@@ -46,18 +39,7 @@ const toggleAbout = () => {
         </div>
         <h2>About</h2>
         <p class="container_right-content-p">
-          Tiramisu chocolate chocolate bar jelly cake tiramisu. Liquorice croissant chocolate bonbon danish gummi bears
-          tiramisu marshmallow candy canes. Dessert sesame snaps chocolate carrot cake apple pie caramels gingerbread.
-          Wafer dragée bear claw tiramisu donut cookie candy soufflé. Bonbon tiramisu chocolate oat cake apple pie
-          brownie. Dragée fruitcake sugar plum cake gummi bears tart jelly-o jelly-o cupcake. Gummies sweet fruitcake
-          sweet roll soufflé.
-          <br />
-          <br />
-          Icing pastry icing halvah biscuit danish cheesecake oat cake macaroon. Candy canes candy chocolate cake jelly
-          apple pie liquorice. Cupcake lollipop candy bonbon oat cake lemon drops. Bear claw donut jujubes croissant
-          icing. Jelly beans donut pie jelly-o donut cake. Gingerbread gummi bears jujubes tart caramels. Jelly-o cake
-          gingerbread dragée liquorice cupcake jelly chocolate cake. Wafer marshmallow cotton candy cookie carrot cake
-          jelly-o soufflé. Shortbread jelly-o oat cake liquorice bonbon lollipop ice cream bonbon fruitcake.
+        
         </p>
         <MyButton class="button_start" href="/intro">start mission</MyButton>
       </div>
