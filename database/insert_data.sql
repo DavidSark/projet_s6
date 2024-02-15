@@ -12,7 +12,7 @@ VALUES ("You've arrived on the planet Zypera, a dense, mysterious jungle stretch
 -- explorer ID = 2 :
 ("You decide to head deep into the lush jungle. The sounds of wildlife fill the air, and you feel curiosity sweep over you.
 Deep in the forest, you discover an ancient altar, emitting a soft light.
-", "Studying the altar", 'Continue on your way', '/img//zypera/image2.webp',4,5,2),
+", "Study the altar", 'Continue on your way', '/img//zypera/image2.webp',4,5,2),
 
 -- Retourner au vaisseau = 3 :
 ("You choose to return to the ship, unsure of what you might find on Zypera. However, once on board, a feeling of incompleteness prompts you to reconsider. The planet has secrets to reveal. Do you return to Zypera or end the mission prematurely?", "Back to Zypera", 'End mission', '/img/zypera/image1.webp',1,1000,2),
